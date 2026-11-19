@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Task Management</title>
+
+    <!-- Dashboard Stylesheet -->
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <!-- DASHBOARD MAIN CONTAINER -->
+    <main class="dashboard">
+
+        <!-- DASHBOARD HEADER -->
+        <header class="dashboard-header">
+            <h1>Dashboard</h1>
+        </header>
+
+
+        <!-- PROJECT SUMMARY -->
+        <section aria-labelledby="summary-heading">
+
+            <h2 id="summary-heading">
+                Project Summary
+            </h2>
+
+            <div class="summary-grid">
+
+                <!-- IN PROGRESS -->
+                <div class="summary-card">
+                    <h3 id="in-progress-count">0</h3>
+                    <p>In Progress</p>
+                </div>
+
+                <!-- IN REVIEW -->
+                <div class="summary-card">
+                    <h3 id="in-review-count">0</h3>
+                    <p>In Review</p>
+                </div>
+
+                <!-- ON HOLD -->
+                <div class="summary-card">
+                    <h3 id="on-hold-count">0</h3>
+                    <p>On Hold</p>
+                </div>
+
+                <!-- COMPLETED -->
+                <div class="summary-card">
+                    <h3 id="completed-count">0</h3>
+                    <p>Completed</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROJECT STATISTICS -->
+        <section aria-labelledby="stats-heading">
+
+            <h2 id="stats-heading">
+                Project Statistics
+            </h2>
+
+            <!-- JavaScript generates the bar graph here -->
+            <div id="statistics-chart"
+                 class="statistics-chart"
+                 role="img"
+                 aria-label="Task counts grouped by status">
+            </div>
+
+        </section>
+
+
+        <!-- TASK ACTIVITY -->
+        <section aria-labelledby="activity-heading">
+
+            <h2 id="activity-heading">
+                Task Activity
+            </h2>
+
+            <!-- JavaScript updates the total -->
+            <p id="total-tasks">
+                Total Tasks: 0
+            </p>
+
+            <h3>Your Tasks</h3>
+
+            <!-- Saved tasks appear here -->
+            <div id="dashboard-task-list"
+                 class="dashboard-task-list">
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <!-- Outside main to prevent positioning issues -->
+
+    <nav class="bottom-navigation"
+         aria-label="Main navigation">
+
+        <!-- DASHBOARD LINK -->
+        <a href="dashboard.html"
+           class="nav-item active"
+           aria-current="page">
+
+            <i data-lucide="layout-dashboard"></i>
+            <span>Dashboard</span>
+
+        </a>
+
+        <!-- TASK LIST LINK -->
+        <a href="index.html"
+           class="nav-item">
+
+            <i data-lucide="list-todo"></i>
+            <span>Task List</span>
+
+        </a>
+
+    </nav>
+
+
+    <!-- LUCIDE ICON LIBRARY -->
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+    <script>
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    </script>
+
+
+    <!-- DASHBOARD JAVASCRIPT -->
+    <script src="js/dashboard.js" type="module"></script>
+
+</body>
+</html>
