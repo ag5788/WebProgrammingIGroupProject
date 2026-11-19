@@ -1,0 +1,564 @@
+
+/* =========================================
+   TASK MANAGEMENT APP - DASHBOARD CSS
+   ========================================= */
+
+/* GLOBAL STYLES */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3e5fa;
+    color: #202020;
+}
+
+/* =========================================
+   MAIN DASHBOARD LAYOUT
+   ========================================= */
+
+.dashboard {
+    width: min(100%, 420px);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 26px 20px 110px;
+    background: white;
+}
+
+/* DASHBOARD HEADER */
+
+.dashboard-header {
+    margin-bottom: 55px;
+}
+
+.dashboard-header h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* SECTION HEADINGS */
+
+.dashboard h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 25px 0 20px;
+}
+
+/* =========================================
+   PROJECT SUMMARY
+   ========================================= */
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+/* SUMMARY CARDS */
+
+.summary-card {
+    min-height: 150px;
+    padding: 20px;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.summary-card h3 {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.summary-card p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* STATUS COLORS */
+
+/* IN PROGRESS - PURPLE */
+
+.summary-card:nth-child(1) {
+    background: #aaa2f5;
+}
+
+/* IN REVIEW - PINK */
+
+.summary-card:nth-child(2) {
+    background: #efa9eb;
+}
+
+/* ON HOLD - YELLOW */
+
+.summary-card:nth-child(3) {
+    background: #f6c65d;
+}
+
+/* COMPLETED - GREEN */
+
+.summary-card:nth-child(4) {
+    background: #63cf7b;
+}
+
+/* =========================================
+   PROJECT STATISTICS
+   ========================================= */
+
+#statistics-chart {
+    width: 100%;
+    min-height: 340px;
+    padding: 25px 12px 60px;
+    background: #fafafa;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* MAIN BAR CHART */
+
+.bar-chart {
+    display: flex;
+    width: 100%;
+    height: 260px;
+    gap: 12px;
+}
+
+/* Y-AXIS */
+
+.y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 20px;
+    height: 100%;
+    flex-shrink: 0;
+
+    color: #777;
+    font-size: 12px;
+    text-align: right;
+}
+
+/* GRAPH AREA */
+
+.graph-area {
+    position: relative;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+
+    border-bottom: 1px solid #ddd;
+}
+
+/* GRAPH GRID */
+
+.graph-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.grid-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border-top: 1px dashed #e5e5e5;
+}
+
+/* BAR COLUMNS */
+
+.bar-column {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    width: 22%;
+    height: 100%;
+}
+
+/* VERTICAL BARS */
+
+.vertical-bar {
+    position: relative;
+
+    width: 72%;
+    max-width: 85px;
+
+    background: #aaa2f5;
+
+    border-radius: 12px 12px 0 0;
+    z-index: 1;
+
+    transition: height 0.35s ease;
+}
+
+/*
+   Bar colors are assigned dynamically
+   in dashboard.js using statusColors:
+
+   In Progress: #aaa2f5
+   In Review:   #efa9eb
+   On Hold:     #f6c65d
+   Completed:   #63cf7b
+*/
+
+/* BAR VALUES */
+
+.bar-value {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* BAR LABELS */
+
+.bar-label {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 120%;
+    text-align: center;
+
+    font-size: 11px;
+    line-height: 1.3;
+    color: #333;
+}
+
+/* =========================================
+   TASK ACTIVITY
+   ========================================= */
+
+/* TOTAL TASKS */
+
+#total-tasks {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* TASK LIST CONTAINER */
+
+.dashboard-task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* TASK CARDS */
+
+.activity-task {
+    display: block;
+
+    padding: 16px 18px;
+    border-radius: 15px;
+
+    border-left: 5px solid transparent;
+    background: #f5f2ff;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.activity-task:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* IN PROGRESS - PURPLE */
+
+.activity-task.in-progress {
+    background: #f5f2ff;
+    border-left-color: #aaa2f5;
+}
+
+/* IN REVIEW - PINK */
+
+.activity-task.in-review {
+    background: #fce8fb;
+    border-left-color: #efa9eb;
+}
+
+/* ON HOLD - YELLOW */
+
+.activity-task.on-hold {
+    background: #fff5da;
+    border-left-color: #f6c65d;
+}
+
+/* COMPLETED - GREEN */
+
+.activity-task.completed {
+    background: #effaf1;
+    border-left-color: #63cf7b;
+}
+
+/* TASK TITLE */
+
+.activity-task h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+
+/* TASK DETAILS */
+
+.activity-task p {
+    font-size: 14px;
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+/* EMPTY TASK MESSAGE */
+
+.empty-tasks {
+    color: #777;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* =========================================
+   BOTTOM NAVIGATION
+   ========================================= */
+
+.bottom-navigation {
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    max-width: 420px;
+    height: 75px;
+
+    margin: 0 auto;
+    padding: 10px 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    background: white;
+    border-top: 1px solid #eee;
+
+    z-index: 1000;
+}
+
+/* NAVIGATION ITEMS */
+
+.bottom-navigation .nav-item {
+    display: flex;
+    flex: 1 1 0;
+    min-width: 0;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+    padding: 5px;
+
+    color: #888;
+    text-decoration: none;
+    text-align: center;
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* NAVIGATION ICONS */
+
+.bottom-navigation .nav-item svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+/* NAVIGATION LABELS */
+
+.bottom-navigation .nav-item span {
+    white-space: nowrap;
+}
+
+/* ACTIVE NAVIGATION ITEM */
+
+.bottom-navigation .nav-item.active {
+    color: #6554ba;
+    font-weight: bold;
+}
+
+/* NAVIGATION HOVER */
+
+.bottom-navigation .nav-item:hover {
+    color: #6554ba;
+}
+
+/* =========================================
+   MOBILE RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 480px) {
+
+    /* DASHBOARD */
+
+    .dashboard {
+        width: 100%;
+        padding: 22px 16px 110px;
+    }
+
+    /* HEADER */
+
+    .dashboard-header h1 {
+        font-size: 28px;
+    }
+
+    /* SECTION HEADINGS */
+
+    .dashboard h2 {
+        font-size: 20px;
+    }
+
+    /* PROJECT SUMMARY */
+
+    .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .summary-card {
+        min-height: 135px;
+        padding: 16px;
+    }
+
+    .summary-card h3 {
+        font-size: 32px;
+    }
+
+    .summary-card p {
+        font-size: 13px;
+    }
+
+    /* PROJECT STATISTICS */
+
+    #statistics-chart {
+        width: 100%;
+        min-height: 300px;
+        padding: 20px 8px 60px;
+    }
+
+    .bar-chart {
+        height: 220px;
+        gap: 6px;
+    }
+
+    .y-axis {
+        width: 18px;
+        font-size: 10px;
+    }
+
+    .vertical-bar {
+        width: 75%;
+    }
+
+    .bar-label {
+        font-size: 10px;
+    }
+
+    /* TASK ACTIVITY */
+
+    .dashboard-task-list {
+        gap: 12px;
+    }
+
+    .activity-task {
+        padding: 14px;
+    }
+
+    .activity-task h3 {
+        font-size: 18px;
+    }
+
+    .activity-task p {
+        font-size: 13px;
+    }
+
+    /* BOTTOM NAVIGATION */
+
+    .bottom-navigation {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 10px 12px;
+    }
+}
+
+/* =========================================
+   TABLET RESPONSIVE DESIGN
+   ========================================= */
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .dashboard {
+        width: min(100%, 420px);
+        padding: 26px 20px 110px;
+    }
+
+    .summary-grid {
+        gap: 14px;
+    }
+
+    .summary-card {
+        min-height: 145px;
+    }
+
+    .bar-chart {
+        height: 250px;
+    }
+
+    .bottom-navigation {
+        width: min(100%, 420px);
+    }
+}
